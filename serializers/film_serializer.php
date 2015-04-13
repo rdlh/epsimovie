@@ -6,10 +6,9 @@ class FilmSerializer {
 
 		foreach ($films as $film) {
 			array_push($formated_films, [
-                'id' 		=> $film->get_id(),
-                'title' 	=> $film->get_title(),
-                'image' 	=> $film->get_image(),
-                'year' 		=> $film->get_year()
+                'title'         => $film->get_title(),
+                'image'         => $film->get_image()
+                'external_id'   => $film->get_image()
 			]);
 		}
 
