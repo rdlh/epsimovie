@@ -5,7 +5,7 @@
 require_once(__ROOT__.'/epsimovie/models/model.php');
 
 class Director extends Model {
-	public static $TABLE_NAME = '´directors';
+	public static $TABLE_NAME = 'directors';
 	public static $FIELDS     = ['name', 'image', 'year', 'external_id'];
 
 	private $id;

@@ -1,6 +1,6 @@
 <?php
 
-define('__ROOT__', dirname(dirname(__FILE__))); 
+define('__ROOT__', dirname(dirname(__FILE__)));
 
 ini_set('display_errors','off');
 
@@ -30,7 +30,7 @@ if ($paths[2] == 'films') {
     FilmsController::search($paths[3]);
     
 } else {
-
+    
     BaseController::render_404();
 
 }

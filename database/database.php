@@ -5,7 +5,7 @@ class Database {
 
     const HOST     = '127.0.0.1';
     const USERNAME = 'root';
-    const PASSWORD = '';
+    const PASSWORD = 'root';
     const DATABASE = 'epsimovie';
 
     public function __construct() {

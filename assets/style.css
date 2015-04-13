@@ -1,0 +1,62 @@
+html,
+body {
+    font-family: 'Lato', Helvetica, Arial, sans-serif;    
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    line-height: 1.5;
+    text-align: center;
+    background: #dddfe4;
+    color: #222;
+}
+
+p {
+	padding: 0;
+	margin: 10px 0;
+}
+
+h1 {
+	font-size: 200%;
+	font-weight: 300;
+}
+
+h1,
+input {
+    margin: 0 auto;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #222;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #222;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #222;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #222;
+}
+
+input {
+    border: 0;
+    padding: 5px;
+    font-size: 150%;
+}
+article {
+    width: 300px;
+    margin: 0 10%;
+    text-align: left;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+    background: #000;
+    -webkit-transition: opacity .4s ease-in;
+}
