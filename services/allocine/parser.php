@@ -26,15 +26,25 @@ class AllocineParser
         return $films;
     }
 
+    public static function parse_single($allocine_film, $local_film)
+    {
+        if(is_null($local_film)) {
+            return new Film(static::object_to_array($allocine_film));
+        } else {
+            return $local_film;
+        }
+    }
+
     public static function object_to_array($object) {
         $formated_name  = (is_null($object->title)) ? $object->originalTitle : $object->originalTitle . ' (' . $object->title . ')';
         $formated_image = (is_null($object->poster)) ? 'http://fr.web.img4.acsta.net/r_160_240/b_1_d6d6d6/commons/emptymedia/empty_photo.jpg' : $object->poster->href;
+        
         $values = [
-            'external_id' => $object->code,
-            'title' => $formated_name,
-            'synopsis' => null,
-            'image' => $formated_image,
-            'year' => $object->productionYear
+            'external_id'   => $object->code,
+            'title'         => $formated_name,
+            'synopsis'      => null,
+            'image'         => $formated_image,
+            'year'          => $object->productionYear
         ];
 
         return $values;

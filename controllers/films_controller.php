@@ -15,18 +15,17 @@ class FilmsController extends BaseController {
 	}
 
 	public static function search($search) {
-		require_once(__ROOT__.'/epsimovie/services/allocine/allocine.php');
-		require_once(__ROOT__.'/epsimovie/services/allocine/parser.php');
-
-		$allocine = new Allocine('100043982026', '29d185d98c984a359e6e6f26a0474269');
-
-		$films = $allocine->search($search);
+		$allocine 	= static::init_allocine();
+		$films 		= $allocine->search($search);
 
 		echo FilmSerializer::multiple_to_json(AllocineParser::parse(json_decode($films)->feed->movie, Film::all()));
 	}
 
-	public static function show($id) {
-		$film = Film::find($id);
+	public static function show($external_id) {
+		$allocine 	= static::init_allocine();
+		$afilm 		= $allocine->get($external_id);
+		$film 		= AllocineParser::parse_single(json_decode($afilm)->feed->movie, Film::find_by_external_id($external_id));
+
 		if ($film == null) {
 			static::render_404();
 		} else {
@@ -42,5 +41,12 @@ class FilmsController extends BaseController {
 	public static function update($id, $values) {
 		Film::update($id, $values);
 		echo json_encode(['message' => 'Film updated']);
+	}
+	
+	public static function init_allocine() {
+		require_once(__ROOT__.'/epsimovie/services/allocine/allocine.php');
+		require_once(__ROOT__.'/epsimovie/services/allocine/parser.php');
+
+		return new Allocine('100043982026', '29d185d98c984a359e6e6f26a0474269');
 	}
 }
