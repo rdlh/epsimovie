@@ -14,8 +14,24 @@ class FilmsController extends BaseController {
 		echo FilmSerializer::multiple_to_json(Film::all());
 	}
 
+	public static function search($search) {
+		require_once(__ROOT__.'/epsimovie/services/allocine/allocine.php');
+		require_once(__ROOT__.'/epsimovie/services/allocine/parser.php');
+
+		$allocine = new Allocine('100043982026', '29d185d98c984a359e6e6f26a0474269');
+
+		$films = $allocine->search($search);
+
+		echo FilmSerializer::multiple_to_json(AllocineParser::parse(json_decode($films)->feed->movie, Film::all()));
+	}
+
 	public static function show($id) {
-		echo FilmSerializer::one_to_json(Film::find($id));
+		$film = Film::find($id);
+		if ($film == null) {
+			static::render_404();
+		} else {
+			echo FilmSerializer::one_to_json($film);
+		}
 	}
 
 	public static function create($values) {

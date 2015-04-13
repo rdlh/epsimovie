@@ -2,6 +2,8 @@
 
 define('__ROOT__', dirname(dirname(__FILE__))); 
 
+ini_set('display_errors','off');
+
 // Controllers
 
 require_once(__ROOT__.'/epsimovie/controllers/films_controller.php');
@@ -13,14 +15,22 @@ $paths  = explode("/", $path);
 
 if ($paths[2] == 'films') {
 
-	FilmsController::render($paths[3]);
+    FilmsController::render($paths[3]);
     
 } else if ($paths[2] == 'actors') {
 
-	ActorsController::render($paths[3]);
+    ActorsController::render($paths[3]);
     
 } else if ($paths[2] == 'directors') {
 
-	DirectorsController::render($paths[3]);
+    DirectorsController::render($paths[3]);
     
+} else if ($paths[2] == 'search') {
+
+    FilmsController::search($paths[3]);
+    
+} else {
+
+    BaseController::render_404();
+
 }

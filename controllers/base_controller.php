@@ -8,7 +8,11 @@ class BaseController {
 	        case 'GET':
 
 	        	if (is_null($id)) {
-	        		static::index();
+	        		if (is_null($_GET['search'])) {
+		        		static::index();
+		        	} else {
+		        		static::search($_GET['search']);
+		        	}
 	        	} else {
 	        		static::show((int)$id);
 	        	}
@@ -25,5 +29,12 @@ class BaseController {
 
 	        	break;
 	    }
+	}
+
+
+	public static function render_404() {
+		http_response_code(404);
+
+		echo json_encode(['error' => 'Not found']);
 	}
 }

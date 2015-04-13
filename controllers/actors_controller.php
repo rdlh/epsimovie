@@ -15,7 +15,12 @@ class ActorsController extends BaseController {
 	}
 
 	public static function show($id) {
-		echo ActorSerializer::one_to_json(Actor::find($id));
+		$actor = Actor::find($id);
+		if ($actor == null) {
+			static::render_404();
+		} else {
+			echo ActorSerializer::one_to_json($actor);
+		}
 	}
 
 	public static function create($values) {
